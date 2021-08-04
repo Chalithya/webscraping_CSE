@@ -2,6 +2,7 @@ from typing import Text
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
+from requests.models import Response
 
 
 #getting teh html page from URL
@@ -9,20 +10,24 @@ url  ='https://www.cse.lk/pages/trade-summary/trade-summary.component.html'
 
 page = requests.get(url)
 
+#print(page.status_code)
 soup = BeautifulSoup(page.text, 'lxml')
+# print(soup)
 
-print(soup.title.text)
+testValue = soup.find(id='1b')
+print(testValue)
+# print(soup.title.text)
 
-table = soup.find('table', {'id':'DataTables_Table_0'})
-# table = soup.find('table', {'class':'dataTable'})
+# table = soup.find('table', {'id':'DataTables_Table_0'})
+# # table = soup.find('table', {'class':'dataTable'})
 
-headers =[]
+# headers =[]
 
-for i in table.find_all('th'):
+# for i in table.find_all('th'):
     
-    title = i.text
-    headers.append(title)
-
+#     title = i.text
+#     headers.append(title)
+####################################################
 # data_table = soup.find('table', attrs={'id':'DataTables_Table_0'})
 # data_table_body = data_table.find('thead') 
 # headers = []
