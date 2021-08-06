@@ -4,15 +4,12 @@ import pandas as pd
 import argparse
 
 
-def main():
 
+def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('name', type=str, help='Name of the CSV file') 
-    args_values = parser.parse_args()
-   
-    table_values = reading_table()
-    printing_table(table_values, args_values.name)
-        
+    args = parser.parse_args()
+    return args
 
 
 
@@ -46,8 +43,15 @@ def reading_table():
 
 def printing_table(df, name : str):
     df.to_csv('{}.csv'.format(name))
-    print('{} Document created'.format(name))
+    print('{} file created'.format(name))
 
+
+
+def main():
+    args_values = parse_args()
+    table_values = reading_table()
+    printing_table(table_values, args_values.name)
+        
 
 
 
